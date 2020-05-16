@@ -6,6 +6,7 @@
 </head>
 <body>
     <script src="./mvvm.js"></script>
+    <script src="./dep.js"></script>
     <div id="app">
         <h2>Role</h2>
         <span>{{name}}</span>
@@ -26,7 +27,14 @@
                     weapon: "sword"
                 }
             }
-        })
+        });
+
+
+        // let dep = new Dep();
+        // dep.addSub(function(){
+        //     console.log("do something");
+        // });
+        // dep.notify();
     </script>
 </body>
 </html>

@@ -14,6 +14,8 @@ function Fakevue(options){
             }
         })
     }
+    compile(options.el, this);
+
 }
 
 
@@ -41,4 +43,35 @@ function observe(data){
             }
         })
     }
+}
+
+function compile(el, vm){
+    vm.$el = document.querySelector(el.indexOf("#")>-1?el:"#"+el);
+    let fragment = document.createDocumentFragment();
+    while(child = vm.$el.firstChild){
+        fragment.appendChild(child);
+    }
+    let reg = new RegExp(/\{\{(.*)\}\}/);
+    replace(fragment);
+    vm.$el.appendChild(fragment);
+    function replace(_fragement){
+        Array.from(_fragement.childNodes).forEach(function(node){
+            let text = node.textContent;
+            if( node.nodeType == 3 && reg.test(text) ){
+                let keyArr = RegExp.$1.split(".");
+                let val = vm;
+                keyArr.map(function(key){
+                    val = val[key];
+                });
+                node.textContent = text.replace(reg,val);
+            }
+    
+            if( node.childNodes ){
+                replace(node);
+            }
+        })
+    }
+
+    
+
 }

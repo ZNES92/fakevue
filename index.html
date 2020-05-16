@@ -7,13 +7,18 @@
 <body>
     <script src="./mvvm.js"></script>
     <div id="app">
-        <span>{{a}}</span>
+        <h2>Role</h2>
+        <span>{{name}}</span>
+        <br>
+        <span>{{age}}</span>
+        <br>
+        <span>使用武器：{{equipment.weapon}}</span>
     </div>
 
     <script>
 
         let vm = new Fakevue({
-            el: 'app',
+            el: '#app',
             data: {
                 name: "gatts",
                 age: "16",

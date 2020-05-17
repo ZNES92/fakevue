@@ -21,7 +21,9 @@ function Fakevue(options){
 
 window.deps = [];
 function observe(data){
-    
+    if( typeof data != "object" ){
+        return;
+    }
     let dep = new Dep();
     window.deps.push(dep);
     for(let key in data){
@@ -44,9 +46,9 @@ function observe(data){
                     return;
                 }
                 val = newVal;
-                if( typeof val == "object" ){
-                    observe(val);
-                }
+                // if( typeof val == "object" ){
+                //     observe(val);
+                // }
                 dep.notify();
             }
         })
